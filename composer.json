@@ -1,0 +1,13 @@
+{
+    "name": "graychen/repositories",
+    "description": "A warehouse logical data object layer was removed",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Graychen",
+            "email": "13780185250@sina.cn"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
