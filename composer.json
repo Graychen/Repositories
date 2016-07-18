@@ -1,7 +1,13 @@
 {
     "name": "graychen/repositories",
     "description": "A warehouse logical data object layer was removed",
-    "license": "MIT",
+    "keywords":[
+        "laravel",
+        "repository",
+        "repositories",
+        "eloquent",
+        "database"
+        ],
     "authors": [
         {
             "name": "Graychen",
@@ -9,5 +15,26 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.*",
+        "illuminate/database": "5.*"
+    },
+    "autoload":{
+        "psr-4":{
+            "Repositories\\":"src/"
+        }   
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Tests\\Repositories\\":"tests/"
+        }
+    },
+    "extra":{
+        "branch-alias":{
+            "dev-master":"0.x-dev"
+        }
+    },
+    "minimum-stability":"dev",
+    "prefer-stable":true
 }
