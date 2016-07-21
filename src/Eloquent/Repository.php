@@ -1,6 +1,8 @@
 <?php
 namespace Repositories\Eloquent;
 
+use Repositories\Contracts\CriteriaInterface;
+use Repositories\Criteria\Criteria;
 use Repositories\Contracts\RepositoryInterface;
 use Repositories\Exceptions\RepositoryException;
 use Illuminate\Database\Eloquent\Model;
@@ -9,12 +11,16 @@ use Illuminate\Container\Container as App;
 /**
     * @brief 仓储接口
  */
-abstract class Repository implements RepositoryInterface{
+abstract class Repository implements RepositoryInterface,CriteriaInterface{
     private $app;
     protected $model;
+    protected $criteria;
+    protected $skipCriteria = false;
 
-    public function __construct(App $app){
+    public function __construct(App $app,Collection $collection){
         $this->app = $app;
+        $this->criteria = $collection;
+        $this->resetScope();
         $this->makeModel();
     }
 
