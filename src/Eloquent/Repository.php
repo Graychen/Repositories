@@ -24,13 +24,15 @@ abstract class Repository implements RepositoryInterface,CriteriaInterface{
         $this->makeModel();
     }
 
-    abstract function model();
+    public abstract function model();
 
     public function all($columns = array('*')){
+      $this->applyCriteria();
       return $this->model->get($columns); 
     }
 
     public function paginate($perPage = 15,$columns=array('*')){
+        $this->applyCriteria();
         return $this->model->paginate($perPage,$columns);
     }
 
@@ -47,10 +49,12 @@ abstract class Repository implements RepositoryInterface,CriteriaInterface{
     }
 
     public function find($id,$columns=array('*')){
+        $this->applyCriteria();
         return $this->model->find($id,$columns);
     }
 
     public function findBy($attribute,$value,$columns=array('*')){
+        $this->applyCriteria();
         return $this->model->where($attribute,'=',$value)->first($columns);
     }
 
@@ -62,6 +66,34 @@ abstract class Repository implements RepositoryInterface,CriteriaInterface{
         }
 
         return $this->model = $model->newQuery();
+    }
+
+
+    public function getCriteria(){
+        return $this->criteria;
+    }
+
+    public function getByCriteria(Criteria $criteria){
+        $this->model = $criteria->apply($this->model,$this);
+        return $this;
+    }
+
+    public function pushCriteria(Criteria $criteria){
+        $this->criteria->push($criteria);
+        return $this;
+    }
+
+    public function applyCriteria(){
+        if($this->skipCriteria === true)
+            return $this;
+
+        foreach($this->getCriteria() as $criteria){
+            if($criteria instanceof Criteria){
+                $this->model = $criteria->apply($this->model,$this);
+            }
+        }
+
+        return $this;
     }
 
 }
