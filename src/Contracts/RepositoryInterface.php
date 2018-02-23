@@ -1,6 +1,5 @@
 <?php
 namespace graychen\repositories\Contracts;
-
 interface RepositoryInterface{
     public function all($columns = array('*'));
     public function paginate($perPage = array('*'));

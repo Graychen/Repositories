@@ -1,9 +1,7 @@
 <?php
 namespace graychen\repositories\Criteria;
-
-use Repositories\Contracts\RepositoryInterface as Repository;
-use Repositories\Contracts\RepositoryInterface;
-
+use graychen\repositories\Contracts\RepositoryInterface as Repository;
+use graychen\repositories\Contracts\RepositoryInterface;
 abstract class Criteria{
     public abstract function apply($model,Repository $repository);
 }
