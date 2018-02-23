@@ -1,5 +1,5 @@
 <?php
-namespace Repositories\Eloquent;
+namespace graychen\repositories\Eloquent;
 
 use Repositories\Contracts\CriteriaInterface;
 use Repositories\Criteria\Criteria;
