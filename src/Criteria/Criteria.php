@@ -1,5 +1,5 @@
 <?php
-namespace Repositories\Criteria;
+namespace graychen\repositories\Criteria;
 
 use Repositories\Contracts\RepositoryInterface as Repository;
 use Repositories\Contracts\RepositoryInterface;
